@@ -1,0 +1,15 @@
+mixin mdc-checkbox(parameters)
+	//- Create a classes array if it's undefined
+	if !parameters.classes
+		- parameters.classes = []
+	//- Add the disabled class to the classes array if disabled is "true"
+	if parameters.disabled
+		- parameters.classes.unshift("mdc-checkbox--disabled")
+	.mdc-form-field(id=parameters.id class=parameters.classes ? parameters.classes : parameters.disabled)
+		.mdc-checkbox
+			input.mdc-checkbox__native-control(type="checkbox" disabled=parameters.disabled ? parameters.disabled : false)
+			.mdc-checkbox__background
+				svg.mdc-checkbox__checkmark(viewBox="0 0 24 24")
+					path.mdc-checkbox__checkmark-path(fill="none", d="M1.73,12.91 8.1,19.28 22.79,4.59")
+				.mdc-checkbox__mixedmark
+		label(for=parameters.id)= parameters.label

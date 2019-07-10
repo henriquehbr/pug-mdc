@@ -1,0 +1,19 @@
+mixin mdc-button(parameters)
+	//- Defaults ripple to "true" if it's not defined
+	if typeof parameters.ripple == "undefined"
+		- parameters.ripple = true
+	//- Defaults icon position to "left" is it's not defined
+	if !parameters.iconPosition || parameters.iconPosition.trim().length == 0
+		- parameters.iconPosition = "left"
+	//- Create the button style class
+	if parameters.style
+		- parameters.style = `mdc-button--${parameters.style}`
+	//- Add the button style class to the beggining of the classes array (if it exists)
+	if parameters.classes
+		- parameters.classes.unshift(parameters.style)
+	button.mdc-button(id=parameters.id class=parameters.classes ? parameters.classes : parameters.style class=parameters.classes data-mdc-auto-init=parameters.ripple ? "MDCRipple" : false disabled=parameters.disabled)
+		if parameters.iconPosition == "left"
+			i.material-icons.mdc-button__icon(aria-hidden="true")= parameters.icon
+		.mdc-button__label= parameters.label
+		if parameters.iconPosition == "right"
+			i.material-icons.mdc-button__icon(aria-hidden="true")= parameters.icon

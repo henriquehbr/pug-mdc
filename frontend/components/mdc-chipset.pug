@@ -1,0 +1,38 @@
+//- @pugdoc
+	name: mdc-chipset
+	description: This mixin create a mdc-chipset element containing multiple mdc-chips inside it
+	arguments:
+		- {string} parameters.style - the chipset style (choice, filter or input)
+		- {array} parameters.chips - the child chips that goes inside the chipset
+		- {string} chips.label - the chip text
+		- {string} chips.icon - the chip icon (from material-icons library)
+		- {string} chips.iconPosition - the position of the chip icon ("left" or "right")
+		- {string} chips.id - the id of a specific chip element
+		- {array} chips.class - the classes of a specific chip element
+	examples:
+		- +mdc-chipset({ label: "Hello World!", icon: "favorite" })
+		-
+			+mdc-chipset({
+				label: "foobar",
+				icon: "event"
+			})
+
+mixin mdc-chipset(parameters)
+	//- Set style to false by default if it's not defined
+	if parameters.style
+		- parameters.style = `mdc-chip-set--${parameters.style}`
+	.mdc-chip-set(class=parameters.style data-mdc-auto-init="MDCChipSet")
+		each chip in parameters.chips
+			//- Defaults icon position to "left" is it's not defined
+			if !chip.iconPosition
+				- chip.iconPosition = "left"
+			button.mdc-chip(id=chip.id class=chip.classes ? chip.classes.join(" ") : false)
+				if chip.iconPosition == "left"
+					i.material-icons.mdc-chip__icon.mdc-chip__icon--leading= chip.icon
+				if parameters.style == "mdc-chip-set--filter"
+					span.mdc-chip__checkmark
+						svg.mdc-chip__checkmark-svg(viewBox="-2 -3 30 30")
+							path.mdc-chip__checkmark-path(fill="none" stroke="black", d="M1.73,12.91 8.1,19.28 22.79,4.59")
+				span.mdc-chip__text= chip.label
+				if chip.iconPosition == "right"
+					i.material-icons.mdc-chip__icon.mdc-chip__icon--leading= chip.icon

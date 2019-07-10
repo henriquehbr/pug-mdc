@@ -1,0 +1,28 @@
+//- @pugdoc
+	name: mdc-chip
+	description: This mixin create a single mdc chip element
+	arguments:
+		- {string} parameters.label - the chip text
+		- {string} parameters.icon - the chip icon (from material-icons library)
+		- {string} chips.iconPosition - the position of the chip icon ("left" or "right")
+		- {boolean} parameters.ripple - disable/enable the ripple effect on click on the chip surface
+	examples:
+		- +mdc-chip({ label: "Hello World!", icon: "favorite" })
+		-
+			+mdc-chip({
+				label: "foobar",
+				icon: "event"
+			})
+
+mixin mdc-chip(parameters)
+	if typeof parameters.ripple == "undefined"
+		- parameters.ripple = true
+	//- Defaults icon position to "left" is it's not defined
+	if !parameters.iconPosition
+		- parameters.iconPosition = "left"
+	button.mdc-chip(data-mdc-auto-init=parameters.ripple ? "MDCRipple" : false)
+		if parameters.iconPosition == "left"
+			i.material-icons.mdc-chip__icon.mdc-chip__icon--leading= parameters.icon
+		span.mdc-chip__text= parameters.label
+		if parameters.iconPosition == "right"
+			i.material-icons.mdc-chip__icon.mdc-chip__icon--leading= parameters.icon

@@ -1,0 +1,18 @@
+{
+	"name": "sowa",
+	"version": "1.0.0",
+	"description": "The necessary file structured to start developing your amazing syntactically-outstanding-web-app within few seconds without hassle",
+	"main": "backend/server.js",
+	"repository": "https://github.com/henriquehbr/sowa",
+	"author": "henriquehbr <henriqueborgeshbr@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.17.1",
+		"nodemon": "^1.19.1",
+		"pug": "^2.0.4",
+		"snyk": "^1.189.0",
+		"stylus": "^0.54.5",
+		"terser": "^4.0.0"
+	},
+	"snyk": true
+}

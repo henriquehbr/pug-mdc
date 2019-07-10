@@ -1,0 +1,23 @@
+mixin mdc-card(parameters)
+	//- Defaults ripple effect to "true" if it's undefined
+	if typeof parameters.buttonRipple == "undefined"
+		- parameters.buttonRipple = true
+	if typeof parameters.cardRipple == "undefined"
+		- parameters.cardRipple = true
+	.mdc-card(id=parameters.id)
+		.mdc-card__primary-action(data-mdc-auto-init=parameters.cardRipple ? "MDCRipple" : false)
+			block
+		.mdc-card__actions
+			.mdc-card__action-buttons
+				each button in parameters.buttons
+					//- Join classes into a string if the classes property exists
+					if button.classes
+						- button.classes = button.classes.join(" ")
+					button.mdc-button.mdc-card__action.mdc-card__action--button(id=button.id class=button.classes ? button.classes : false data-mdc-auto-init=parameters.buttonRipple ? "MDCRipple" : false)
+						span.mdc-button__label= button.label
+			.mdc-card__action-icons
+				each iconButton in parameters.iconButtons
+					//- Join classes into a string if the classes property exists
+					if iconButton.classes
+						- iconButton.classes = iconButton.classes.join(" ")
+					button.material-icons.mdc-icon-button.mdc-card__action.mdc-card__action--icon(id=iconButton.id class=iconButton.classes ? iconButton.classes : false)= iconButton.icon

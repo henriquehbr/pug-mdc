@@ -1,0 +1,37 @@
+//-
+	TODO:
+	- Validate parameters with regex and throw errors if anything goes wrong
+
+//- MDC components
+include components/mdc-button
+include components/mdc-card
+include components/mdc-auto-init
+include components/mdc-checkbox
+include components/mdc-chip
+include components/mdc-chipset
+include components/mdc-dialog
+
+//- Here you can save your mixins to reuse code
+mixin prevent-fouc()
+	script.
+		document.querySelector("html").style.display = "none";
+		window.onload = () => document.querySelector("html").style.display = "block";
+
+//- Page template
+mixin index()
+	doctype html
+	html(lang="en")
+		head
+			meta(charset="UTF-8")
+			meta(name="viewport" content="width=device-width, initial-scale=1.0")
+			meta(http-equiv="X-UA-Compatible" content="ie=edge")
+			meta(name="description" content="Lorem ipsum dolor sit amet consectetur")
+			meta(name="keywords" content="hello world, hello, world, foobar")
+			title pug-mdc
+			+prevent-fouc()
+			link(rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css")
+			link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+		body
+			block
+			script(src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js")
+			+mdc-auto-init()
