@@ -1,18 +1,13 @@
 {
-	"name": "sowa",
-	"version": "1.0.0",
-	"description": "The necessary file structured to start developing your amazing syntactically-outstanding-web-app within few seconds without hassle",
-	"main": "backend/server.js",
-	"repository": "https://github.com/henriquehbr/sowa",
+	"name": "pug-mdc",
+	"version": "1.1.0",
+	"description": "A bunch of pug mixins for make the work with Material Web Components way easier",
+	"main": "pug-mdc.pug",
+	"repository": "https://github.com/henriquehbr/pug-mdc",
 	"author": "henriquehbr <henriqueborgeshbr@gmail.com>",
 	"license": "MIT",
 	"dependencies": {
-		"express": "^4.17.1",
-		"nodemon": "^1.19.1",
-		"pug": "^2.0.4",
-		"snyk": "^1.189.0",
-		"stylus": "^0.54.5",
-		"terser": "^4.0.0"
+		"pug": "^2.0.4"
 	},
 	"snyk": true
 }
