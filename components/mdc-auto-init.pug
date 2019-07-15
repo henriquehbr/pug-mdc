@@ -1,0 +1,48 @@
+mixin mdc-auto-init()
+	script.
+		// Initialize MDC elements
+		window.mdc.autoInit(document, () => {});
+
+		// Initialize all MDC dialogs
+		function initMDCElements(element) {
+			switch (element) {
+				case "mdc-dialog":
+					initMethod = elementToAttach => {
+						return mdc.dialog.MDCDialog.attachTo(elementToAttach)
+					}
+					break
+				case "mdc-drawer":
+					initMethod = elementToAttach => {
+						return mdc.drawer.MDCDrawer.attachTo(elementToAttach)
+					}
+					break
+			}
+			var elementList = document.querySelectorAll(`.${element}`);
+			// Loop through all elements
+			for (var i = 0; i < elementList.length; i++) {
+				// Verify if the element has an id, and if it's in kebab-case, converts it to camelCase
+				if (elementList[i].id) {
+					var originalDialogId = elementList[i].id;
+					var dialogId = originalDialogId.split("-");
+					// Capitalize first letter of each word after the first word
+					for (var y = 0; y < dialogId.length; y++) {
+						if (y > 0) {
+							dialogId[y] = dialogId[y].replace(dialogId[y].charAt(0), dialogId[y].charAt(0).toUpperCase());
+						}
+					}
+					// Convert the array to string
+					dialogId = dialogId.join("")
+					// Initialize the element
+					window[dialogId] = initMethod(elementList[i]);
+				} else {
+					// If element don't have an id
+					dialogId = `dialog${i}`;
+					window[dialogId] = initMethod(elementList[i]);
+				}
+			}
+		}
+
+		initMDCElements("mdc-dialog");
+		initMDCElements("mdc-drawer");
+		helloWorldDialog.open()
+		document.querySelector("body").addEventListener("click", () => dialog0.open = !dialog0.open)

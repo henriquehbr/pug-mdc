@@ -1,0 +1,41 @@
+include pug-mdc
+
++index()
+	+mdc-drawer({
+		style: "modal",
+		title: "Lipsum",
+		subtitle: "Lorem ipsum",
+		listItems: [
+			{ type: "subheader", label: "Example Subheader" },
+			{ label: "Home", icon: "inbox", activated: true },
+			{ type: "divider" },
+			{ icon: "favorite", label: "About" }
+		]
+	})
+	+mdc-button({ label: "Hello World!", style: "raised", icon: "favorite" })
+	+mdc-card({
+		buttons: [{ id: "btn1", label: "Action 1" }, { id: "btn2", label: "Action 2" }],
+		iconButtons: [{ id: "share", icon: "share" }, { id: "more_vert", icon: "more_vert" }]
+	})
+		+mdc-typography-headline6("Hello World!")
+	+mdc-checkbox({ id: "checkbox-1", label: "Lorem ipsum" })
+	+mdc-chip({ label: "Hello World!", icon: "event" })
+	+mdc-chipset({
+		style: "filter",
+		chips: [
+			{ label: "Selectable content", icon: "favorite" },
+			{ label: "Enemies approaching from the north", icon: "event" }
+		]
+	})
+	+mdc-chip({ label: "First card", icon: "event" })
+	+mdc-chip({ label: "Second card", icon: "favorite" })
+	+mdc-dialog({
+		id: "helloWorldDialog",
+		classes: ["a", "f", "k"],
+		title: "Lorem ipsum",
+		buttons: [
+			{ id: "a", classes: ["j", "s", "x"], label: "Decline", action: "no" },
+			{ id: "b", classes: ["j", "s", "x"], label: "Accept", action: "yes" }
+		]
+	})
+		p Slim Shady!

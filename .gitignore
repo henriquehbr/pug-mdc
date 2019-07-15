@@ -3,3 +3,9 @@ node_modules
 
 # Snyk log
 .snyk
+
+# Yarn error log
+yarn-error.log
+
+# VSCode configuration files
+.vscode

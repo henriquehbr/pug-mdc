@@ -11,6 +11,29 @@ include components/mdc-chip
 include components/mdc-chipset
 include components/mdc-dialog
 
+include components/mdc-drawer
+include components/mdc-fab
+include components/mdc-icon-button
+include components/mdc-image-list
+include components/mdc-grid
+include components/mdc-list
+include components/mdc-linear-progress
+include components/mdc-menu
+include components/mdc-radio
+include components/mdc-select
+include components/mdc-slider
+include components/mdc-snackbar
+include components/mdc-switch
+include components/mdc-tabs
+include components/mdc-text-field
+include components/mdc-top-app-bar
+include components/mdc-typography
+
+-
+	function verifyParameter(parameter) {
+		return parameter ? parameter : false
+	}
+
 //- Here you can save your mixins to reuse code
 mixin prevent-fouc()
 	script.
@@ -29,6 +52,7 @@ mixin index()
 			meta(name="keywords" content="hello world, hello, world, foobar")
 			title pug-mdc
 			+prevent-fouc()
+			link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css")
 			link(rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css")
 			link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
 		body
