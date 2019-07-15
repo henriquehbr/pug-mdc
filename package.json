@@ -6,8 +6,6 @@
 	"repository": "https://github.com/henriquehbr/pug-mdc",
 	"author": "henriquehbr <henriqueborgeshbr@gmail.com>",
 	"license": "MIT",
-	"dependencies": {
-		"pug": "^2.0.4"
-	},
+	"dependencies": {},
 	"snyk": true
 }
