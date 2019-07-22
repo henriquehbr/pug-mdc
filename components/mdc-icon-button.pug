@@ -1,0 +1,10 @@
+mixin mdc-icon-button(parameters)
+	if parameters
+		- parameters.icon ? parameters.icon : false
+		- parameters.disabled ? parameters.disabled : false
+		if parameters.icon
+			button.mdc-icon-button.material-icons(disabled=disabled)= parameters.icon
+		else if parameters.toggleIconOn && parameters.toggleIconOff
+			button.mdc-icon-button(aria-hidden="true" aria-pressed="false" disabled=parameters.disabled data-mdc-auto-init="MDCIconButtonToggle")
+				i.material-icons.mdc-icon-button__icon.mdc-icon-button__icon--on= parameters.toggleIconOn
+				i.material-icons.mdc-icon-button__icon= parameters.toggleIconOff

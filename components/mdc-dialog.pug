@@ -1,18 +1,19 @@
 mixin mdc-dialog(parameters)
-	- parameters.id = verifyParameter(parameters.id)
-	.mdc-dialog(id=parameters.id role="alertdialog" aria-modal="true" aria-labelledby=`${parameters.id}-title` aria-describedby=`${parameters.id}-content`)
-		.mdc-dialog__container
-			.mdc-dialog__surface
-				if parameters.title
-					h2.mdc-dialog__title(id="#{parameters.id}-title")= parameters.title
-				.mdc-dialog__content(id="#{parameters.id}-content")
-					block
-				footer.mdc-dialog__actions
-					each button in parameters.buttons
-						- button.classes = verifyParameter(button.classes)
-						- button.action = verifyParameter(button.action)
-						if button.classes !== false
-							- button.classes = button.classes.join(" ")
-						button.mdc-button.mdc-dialog__button(id=button.id class=button.classes type="button" data-mdc-dialog-action=button.action)
-							span.mdc-button__label= button.label
-		.mdc-dialog__scrim
+	if parameters
+		- parameters.id = parameters.id ? parameters.id : false
+		.mdc-dialog(id=parameters.id role="alertdialog" aria-modal="true" aria-labelledby=`${parameters.id}-title` aria-describedby=`${parameters.id}-content`)
+			.mdc-dialog__container
+				.mdc-dialog__surface
+					if parameters.title
+						h2.mdc-dialog__title(id="#{parameters.id}-title")= parameters.title
+					.mdc-dialog__content(id="#{parameters.id}-content")
+						block
+					footer.mdc-dialog__actions
+						each button in parameters.buttons
+							- button.classes = button.classes ? button.classes : false
+							- button.action = button.classes ? button.classes : false
+							if button.classes !== false
+								- button.classes = button.classes.join(" ")
+							button.mdc-button.mdc-dialog__button(id=button.id class=button.classes type="button" data-mdc-dialog-action=button.action)
+								span.mdc-button__label= button.label
+			.mdc-dialog__scrim

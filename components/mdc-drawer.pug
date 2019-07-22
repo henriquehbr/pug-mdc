@@ -1,53 +1,54 @@
 mixin mdc-drawer(parameters)
-	//- Verify parameters
-	- parameters.id = verifyParameter(parameters.id)
-	- parameters.style = verifyParameter(parameters.style)
-	- parameters.title = verifyParameter(parameters.title)
-	- parameters.subtitle = verifyParameter(parameters.subtitle)
-	//- Define the classes object
-	- parameters.classes = []
-	//- Set the style to "modal" if it's undefined'
-	if parameters.style == false
-		- parameters.style = "mdc-drawer--modal"
-	else
-		- parameters.style = `mdc-drawer--${parameters.style}`
-	//- Add the style to the classes array and convert the array to a string
-	- parameters.classes.unshift(parameters.style)
-	- parameters.classes.join(" ")
-	aside.mdc-drawer(id=parameters.id class=parameters.classes)
-		if parameters.title || parameters.subtitle
-			.mdc-drawer__header
-				.mdc-drawer__title= parameters.title
-				.mdc-drawer__subtitle= parameters.subtitle
-		.mdc-drawer__content
-			nav.mdc-list
-				each listItem in parameters.listItems
-					- listItem.id = verifyParameter(listItem.id)
-					- listItem.classes = verifyParameter(listItem.classes)
-					- listItem.link = verifyParameter(listItem.link)
-					- listItem.activated = verifyParameter(listItem.activated)
-					//- Defaults "openNewTab" to true if it's not defined
-					if listItem.openNewTab == null
-						- listItem.openNewTab = true
-					else if listItem.openNewTab == true
-						- listItem.openNewTab = "_blank"
-					if listItem.classes == false
-						- listItem.classes = []
-					if listItem.activated == true
-						- listItem.classes.push("mdc-list-item--activated")
-					- listItem.classes = listItem.classes.join(" ")
-					case listItem.type
-						when "divider"
-							hr.mdc-list-divider(id=listItem.id class=listItem.classes)
-						when "subheader"
-							h6.mdc-list-group__subheader(id=listItem.id class=listItem.classes)= listItem.label
-						default
-							a.mdc-list-item(id=listItem.id class=listItem.classes href=listItem.link target=listItem.openNewTab)
-								if listItem.icon
-									i.material-icons.mdc-list-item__graphic(aria-hidden="true")= listItem.icon
-								span.mdc-list-item__text= listItem.label
-	if parameters.style == "mdc-drawer--modal"
-		.mdc-drawer-scrim
-	else if parameters.style == "mdc-drawer--dismissible"
-		.mdc-drawer-app-content
-			block
+	if parameters
+		//- Verify parameters
+		- parameters.id = parameters.id ? parameters.id : false
+		- parameters.style = parameters.style ? parameters.style : false
+		- parameters.title = parameters.title ? parameters.title : false
+		- parameters.subtitle = parameters.subtitle ? parameters.subtitle : false
+		//- Define the classes object
+		- parameters.classes = []
+		//- Set the style to "modal" if it's undefined'
+		if parameters.style == false
+			- parameters.style = "mdc-drawer--modal"
+		else
+			- parameters.style = `mdc-drawer--${parameters.style}`
+		//- Add the style to the classes array and convert the array to a string
+		- parameters.classes.unshift(parameters.style)
+		- parameters.classes.join(" ")
+		aside.mdc-drawer(id=parameters.id class=parameters.classes)
+			if parameters.title || parameters.subtitle
+				.mdc-drawer__header
+					.mdc-drawer__title= parameters.title
+					.mdc-drawer__subtitle= parameters.subtitle
+			.mdc-drawer__content
+				nav.mdc-list
+					each listItem in parameters.listItems
+						- listItem.id = listItem.id ? listItem.id : false
+						- listItem.classes = listItem.classes ? listItem.classes : false
+						- listItem.link = listItem.link ? listItem.link : false
+						- listItem.activated = listItem.activated ? listItem.activated : false
+						//- Defaults "openNewTab" to true if it's not defined
+						if listItem.openNewTab == null
+							- listItem.openNewTab = true
+						else if listItem.openNewTab == true
+							- listItem.openNewTab = "_blank"
+						if listItem.classes == false
+							- listItem.classes = []
+						if listItem.activated == true
+							- listItem.classes.push("mdc-list-item--activated")
+						- listItem.classes = listItem.classes.join(" ")
+						case listItem.type
+							when "divider"
+								hr.mdc-list-divider(id=listItem.id class=listItem.classes)
+							when "subheader"
+								h6.mdc-list-group__subheader(id=listItem.id class=listItem.classes)= listItem.label
+							default
+								a.mdc-list-item(id=listItem.id class=listItem.classes href=listItem.link target=listItem.openNewTab)
+									if listItem.icon
+										i.material-icons.mdc-list-item__graphic(aria-hidden="true")= listItem.icon
+									span.mdc-list-item__text= listItem.label
+		if parameters.style == "mdc-drawer--modal"
+			.mdc-drawer-scrim
+		else if parameters.style == "mdc-drawer--dismissible"
+			.mdc-drawer-app-content
+				block

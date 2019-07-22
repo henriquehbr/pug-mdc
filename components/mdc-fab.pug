@@ -1,0 +1,17 @@
+mixin mdc-fab(parameters)
+	if parameters
+		- parameters.id ? parameters.id : false
+		//- Define the classes array if it's undefined
+		if !Array.isArray(parameters.classes)
+			- parameters.classes = []
+		//- Sets ripple to true by default
+		if parameters.ripple == "undefined" || parameters.ripple == true
+			- parameters.ripple = "MDCRipple"
+		//- Verify if label is defined and isn't empty
+		if typeof parameters.label == "string" && parameters.label.trim() != ""
+			- parameters.classes.unshift("mdc-fab--extended")
+			- parameters.classes = parameters.classes.join(" ")
+		button.mdc-fab(id=parameters.id class=parameters.classes aria-label=parameters.icon data-mdc-auto-init=parameters.ripple)
+			span.mdc-fab__icon.material-icons= parameters.icon
+			if parameters.label
+				span.mdc-fab__label= parameters.label

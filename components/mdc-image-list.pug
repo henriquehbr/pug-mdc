@@ -1,0 +1,34 @@
+mixin mdc-image-list(parameters)
+	if parameters && typeof parameters.columns == "number"
+		- var style = parameters.style ? parameters.style : "standard"
+		- var columns = parameters.columns
+		- var gap = parameters.gap ? parameters.gap : 10
+		- var id = parameters.id ? parameters.id : false
+		- var classes = parameters.classes ? parameters.classes : []
+		- var textOverlay = parameters.textOverlay
+		if Array.isArray(classes)
+			if style == "masonry"
+				- classes.unshift("mdc-image-list--masonry")
+				- var imageList = `column-count: ${columns}; column-gap: ${gap}px`
+			else if style == "standard"
+				- var imageListItem = `width: calc(100% / ${columns} - ${gap + 1 / columns}px); margin: ${gap / 2}px`
+				if textOverlay == true || typeof textOverlay == "undefined"
+					- classes.unshift("mdc-image-list--with-text-protection")
+			- classes = classes.join(" ")
+		//- Image list
+		ul.mdc-image-list(id=id class=classes style=imageList ? imageList : false)
+			each image in parameters.images
+				- var id = image.id ? image.id : false
+				- var classes = image.classes ? image.classes : []
+				- var src = image.src
+				- var label = image.label
+				if Array.isArray(classes)
+					- classes = classes.join(" ")
+				li.mdc-image-list__item(id=id class=classes style=imageListItem ? imageListItem : false)
+					if style == "standard"
+						.mdc-image-list__image-aspect-container
+							img.mdc-image-list__image(src=src alt=label)
+					else if style == "masonry"
+						img.mdc-image-list__image(src=src alt=label)
+					.mdc-image-list__supporting
+						span.mdc-image-list__label= label
