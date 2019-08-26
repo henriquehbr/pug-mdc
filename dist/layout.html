@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Lorem ipsum dolor sit amet consectetur"><meta name="keywords" content="hello world, hello, world, foobar"><title>pug-mdc</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head><body><button class="mdc-button mdc-button--raised" data-mdc-auto-init="MDCRipple"><i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i><div class="mdc-button__label">Hello World!</div></button><ul class="mdc-list mdc-list--two-line a b c" id="helloWorld"><li class="mdc-list-item" tabindex="0" data-mdc-auto-init="MDCRipple"><span class="mdc-list-item__graphic material-icons" aria-hidden="true">inbox</span><div class="mdc-list-item__text"><span class="mdc-list-item__primary-text">List item 1</span><span class="mdc-list-item__secondary-text">Hello World!</span></div><span class="mdc-list-item__meta material-icons" aria-hidden="true">info</span></li><li class="mdc-list-divider" role="separator"></li><li class="mdc-list-item" tabindex="0" data-mdc-auto-init="MDCRipple"><span class="mdc-list-item__graphic material-icons" aria-hidden="true">inbox</span><div class="mdc-list-item__text"><span class="mdc-list-item__primary-text">List item 1</span><span class="mdc-list-item__secondary-text">Hello World!</span></div><span class="mdc-list-item__meta material-icons" aria-hidden="true">info</span></li></ul><script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script><script>//- Initialize MDC elements
+window.mdc.autoInit(document, function () {}); //- Initialize all MDC dialogs
+
+function initMDCElements(element) {
+  switch (element) {
+    case "mdc-dialog":
+      initMethod = function initMethod(elementToAttach) {
+        return mdc.dialog.MDCDialog.attachTo(elementToAttach);
+      };
+
+      break;
+
+    case "mdc-drawer":
+      initMethod = function initMethod(elementToAttach) {
+        return mdc.drawer.MDCDrawer.attachTo(elementToAttach);
+      };
+
+      break;
+  }
+
+  var elementList = document.querySelectorAll(".".concat(element)); // Loop through all elements
+
+  for (var i = 0; i < elementList.length; i++) {
+    // Verify if the element has an id, and if it's in kebab-case, converts it to camelCase
+    if (elementList[i].id) {
+      var originalDialogId = elementList[i].id;
+      var dialogId = originalDialogId.split("-"); // Capitalize first letter of each word after the first word
+
+      for (var y = 0; y < dialogId.length; y++) {
+        if (y > 0) {
+          dialogId[y] = dialogId[y].replace(dialogId[y].charAt(0), dialogId[y].charAt(0).toUpperCase());
+        }
+      } // Convert the array to string
+
+
+      dialogId = dialogId.join(""); // Initialize the element
+
+      window[dialogId] = initMethod(elementList[i]);
+    } else {
+      // If element don't have an id
+      dialogId = "dialog".concat(i);
+      window[dialogId] = initMethod(elementList[i]);
+    }
+  }
+}
+
+initMDCElements("mdc-dialog");
+initMDCElements("mdc-drawer");</script></body></html>

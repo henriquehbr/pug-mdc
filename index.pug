@@ -1,5 +1,31 @@
-extends layout
+//- Page template
 include pug-mdc
+include doggo
 
-block body
-	//- Insert your pug-mdc mixins here...
+doctype html
+html(lang="en")
+	head
+		+charset
+		+viewport
+		+ie-support
+		+description("Lorem ipsum dolor sit amet consectetur")
+		+keywords(["hello world", "hello", "world", "foobar"])
+		title pug-mdc
+		+css("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css")
+		+css("https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css")
+		+css("https://fonts.googleapis.com/icon?family=Material+Icons")
+	body
+		//- Insert your pug-mdc mixins here...
+		+mdc-button-raised()(label="Hello World!" leftIcon="favorite")
+		+mdc-list({
+			twoLine: true,
+			id: "helloWorld",
+			classes: ["a", "b", "c"],
+			listItems: [
+				{ leadingIcon: "inbox", trailingIcon: "info", label: "List item 1", subtitle: "Hello World!" },
+				{ type: "divider" },
+				{ leadingIcon: "inbox", trailingIcon: "info", label: "List item 1", subtitle: "Hello World!" }
+			]
+		})
+		+js("https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js")
+		+mdc-auto-init

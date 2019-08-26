@@ -2,18 +2,15 @@
 	"name": "pug-mdc",
 	"version": "1.1.0",
 	"description": "A bunch of pug mixins for make the work with Material Web Components way easier",
-	"main": "server.js",
+	"main": "index.pug",
 	"repository": "https://github.com/henriquehbr/pug-mdc",
 	"author": "henriquehbr <henriqueborgeshbr@gmail.com>",
 	"license": "MIT",
-	"dependencies": {
-		"express": "^4.17.1",
-		"pug": "^2.0.4",
-		"stylus": "^0.54.5",
-		"terser": "^4.1.2"
+	"scripts": {
+		"start": "parcel index.pug"
 	},
-	"snyk": true,
 	"devDependencies": {
-		"nodemon": "^1.19.1"
+		"parcel-bundler": "^1.12.3",
+		"pug": "^2.0.4"
 	}
 }

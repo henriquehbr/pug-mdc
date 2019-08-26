@@ -1,0 +1,34 @@
+mixin mdc-list(_)
+	//- Enables ripple effect by default
+	- _.ripple == null || _.ripple == true ? _.ripple = "MDCRipple" : false
+	//- Verify if two line mode is enabled
+	- _.twoLine == true ? _.classes.unshift("mdc-list--two-line") : false
+	ul.mdc-list(id=_.id class=_.classes)
+		each listItem in _.listItems
+			//- Defaults type to "item"
+			- listItem.type == null ? listItem.type = "item" : listItem.type
+			case listItem.type
+				//- Generic list item
+				when "item"
+					if _.twoLine
+						//- Two-line mode
+						li.mdc-list-item(tabindex="0" data-mdc-auto-init=_.ripple)
+							if listItem.leadingIcon
+								span.mdc-list-item__graphic.material-icons(aria-hidden="true")= listItem.leadingIcon
+							.mdc-list-item__text
+								span.mdc-list-item__primary-text= listItem.label
+								span.mdc-list-item__secondary-text= listItem.subtitle
+							if listItem.trailingIcon
+								span.mdc-list-item__meta.material-icons(aria-hidden="true")= listItem.trailingIcon
+					else
+						//- Single line mode
+						li.mdc-list-item(tabindex="0" data-mdc-auto-init=_.ripple)
+							if listItem.leadingIcon
+								span.mdc-list-item__graphic.material-icons(aria-hidden="true")= listItem.leadingIcon
+							span.mdc-list-item__text= listItem.label
+							if listItem.trailingIcon
+								span.mdc-list-item__meta.material-icons(aria-hidden="true")= listItem.trailingIcon
+				//- Group header
+				when "subheader": h3.mdc-list-group__subheader(role="separator")
+				//- Item divider
+				when "divider": li.mdc-list-divider(role="separator")
