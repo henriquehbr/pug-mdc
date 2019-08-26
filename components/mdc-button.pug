@@ -5,26 +5,26 @@ mixin button-content(label, leftIcon, rightIcon)
 	if rightIcon
 		i.material-icons.mdc-button__icon(aria-hidden="true")= rightIcon
 
-mixin mdc-button()
+mixin mdc-button(_)
 	//- Enables ripple by default
-	- attributes.ripple = attributes.ripple || attributes.ripple === undefined ? "MDCRipple" : false
-	button.mdc-button(id=attributes.id class=attributes.class data-mdc-auto-init=attributes.ripple disabled=attributes.disabled)
-		+button-content(attributes.label, attributes.leftIcon, attributes.rightIcon)
+	- _.ripple = _.ripple || _.ripple === undefined ? "MDCRipple" : false
+	button.mdc-button(id=_.id class=_.class data-mdc-auto-init=_.ripple disabled=_.disabled)
+		+button-content(_.label, _.leftIcon, _.rightIcon)
 
-mixin mdc-button-raised()
+mixin mdc-button-raised(_)
 	//- Enables ripple by default
-	- attributes.ripple = attributes.ripple || attributes.ripple === undefined ? "MDCRipple" : false
-	button.mdc-button.mdc-button--raised(id=attributes.id class=attributes.class data-mdc-auto-init=attributes.ripple disabled=attributes.disabled)
-		+button-content(attributes.label, attributes.leftIcon, attributes.rightIcon)
+	- _.ripple = _.ripple || _.ripple === undefined ? "MDCRipple" : false
+	button.mdc-button.mdc-button--raised(id=_.id class=_.class data-mdc-auto-init=_.ripple disabled=_.disabled)
+		+button-content(_.label, _.leftIcon, _.rightIcon)
 
-mixin mdc-button-outlined()
+mixin mdc-button-outlined(_)
 	//- Enables ripple by default
-	- attributes.ripple = attributes.ripple || attributes.ripple === undefined ? "MDCRipple" : false
-	button.mdc-button.mdc-button--outlined(id=attributes.id class=attributes.class data-mdc-auto-init=attributes.ripple disabled=attributes.disabled)
-		+button-content(attributes.label, attributes.leftIcon, attributes.rightIcon)
+	- _.ripple = _.ripple || _.ripple === undefined ? "MDCRipple" : false
+	button.mdc-button.mdc-button--outlined(id=_.id class=_.class data-mdc-auto-init=_.ripple disabled=_.disabled)
+		+button-content(_.label, _.leftIcon, _.rightIcon)
 
-mixin mdc-button-unelevated()
+mixin mdc-button-unelevated(_)
 	//- Enables ripple by default
-	- attributes.ripple = attributes.ripple || attributes.ripple === undefined ? "MDCRipple" : false
-	button.mdc-button.mdc-button--unelevated(id=attributes.id class=attributes.class data-mdc-auto-init=attributes.ripple disabled=attributes.disabled)
-		+button-content(attributes.label, attributes.leftIcon, attributes.rightIcon)
+	- _.ripple = _.ripple || _.ripple === undefined ? "MDCRipple" : false
+	button.mdc-button.mdc-button--unelevated(id=_.id class=_.class data-mdc-auto-init=_.ripple disabled=_.disabled)
+		+button-content(_.label, _.leftIcon, _.rightIcon)
