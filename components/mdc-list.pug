@@ -9,7 +9,12 @@ mixin mdc-list-two-line()
 mixin mdc-list-item(_)
 	//- Enables ripple effect by default
 	- _.ripple == null || _.ripple == true ? _.ripple = "MDCRipple" : false
-	li.mdc-list-item(tabindex="0" data-mdc-auto-init=_.ripple)
+	//- Declare the class array by default
+	if attributes.class == null
+		- attributes.class = []
+	if _.hasOwnProperty("selected") && _.selected !== null && _.selected !== false
+		- attributes.class.unshift("mdc-list-item--activated")
+	li.mdc-list-item(id=attributes.id class=attributes.class tabindex="0" data-mdc-auto-init=_.ripple)
 		if _.leadingIcon
 			span.mdc-list-item__graphic.material-icons(aria-hidden="true")= _.leadingIcon
 		.mdc-list-item__text
