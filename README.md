@@ -1,6 +1,12 @@
 # pug-mdc
 
+<center>
+
+![pug-mdc-logo](assets/pug-mdc-banner.png)
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![Known Vulnerabilities](https://snyk.io/test/github/henriquehbr/pug-mdc/badge.svg)](https://snyk.io/test/github/henriquehbr/pug-mdc)
+
+</center>
 
 > A collection of pug mixins to make the work with Material Web Components way easier
 
@@ -22,11 +28,7 @@ Basically, a pug mdc mixin is composed of a mixin with the MDC component name, a
 
 ```pug
 //- Creates a raised mdc button with a heart icon
-+mdc-button({
-	style: "raised",
-	icon: "favorite",
-	label: "MDC Button"
-})
++mdc-button-raised({ label: "Raised Button", icon: "favorite" })
 
 //- Creates a "body 2" sized "Hello World!" paragraph
 +mdc-typography-body2("Hello World!")
